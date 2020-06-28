@@ -90,8 +90,6 @@ var CulledPolygon = function CulledPolygon(polygon, angle) {
       _this.checkCullCriteria(i, i + 1, i + 2);
     }
 
-    console.log(_this.cullIndex);
-
     for (var j = 0; j < _this.vertexCount; j++) {
       if (!_this.cullIndex.includes(j)) {
         _this.culledPolygon.push(_this.polygon[j]);
@@ -111,7 +109,6 @@ var CulledPolygon = function CulledPolygon(polygon, angle) {
     if (j >= _this.vertexCount) {
       var j = j - _this.vertexCount;
     }
-    console.log(i, j, k);
 
     var thisNextAngle = _this.calcAngle(_this.polygon[i].x, _this.polygon[i].y, _this.polygon[j].x, _this.polygon[j].y);
 
@@ -159,15 +156,14 @@ var CulledPolygon = function CulledPolygon(polygon, angle) {
     ctx.fill();
 
     for (var i = 0; i < points.length; i++) {
-      ctx.fillStyle = '#0f0';
+      ctx.fillStyle = '#00f';
       ctx.beginPath();
       ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 2, 0, 2 * Math.PI);
       ctx.fill();
       ctx.closePath();
-      ctx.fillStyle = '#000';
-      ctx.font = "10px Arial";
-      ctx.fillText(i, points[i].x + xoffset + 2, points[i].y + yoffset);
     }
+
+    ctx.fillStyle = '#000';
 
     for (var _i = 0; _i < culledPoints.length; _i++) {
       ctx.beginPath();
@@ -189,7 +185,7 @@ var canvas1 = document.getElementById("canvas1");
 var ctx1 = canvas1.getContext('2d');
 var canvas2 = document.getElementById("canvas2");
 var ctx2 = canvas2.getContext('2d');
-var polygon = new RandomPolygon(25, 250, 250, 6);
+var polygon = new RandomPolygon(45, 250, 250, 6);
 polygon.draw(ctx1);
-var culledPolygon = new CulledPolygon(polygon.polygon, 8);
+var culledPolygon = new CulledPolygon(polygon.polygon, 10);
 culledPolygon.draw(ctx2);

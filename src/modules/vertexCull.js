@@ -12,7 +12,6 @@ export class CulledPolygon {
         for (let i = 0; i < this.polygon.length; i++) {
             this.checkCullCriteria(i, i+1, i+2);
         }
-        console.log(this.cullIndex);
 
         for (let j=0; j < this.vertexCount; j++) {
             if (!(this.cullIndex.includes(j))) {
@@ -22,17 +21,14 @@ export class CulledPolygon {
     }
 
     checkCullCriteria = (i, j, k) => {
-        if (this.cullIndex.includes(j)) {
-            return;
-        }
+        if (this.cullIndex.includes(j)) { return; };
         if (k >= this.vertexCount) { var k = k - this.vertexCount; };
         if (j >= this.vertexCount) { var j = j - this.vertexCount; };
-        console.log(i, j, k)
         var thisNextAngle = this.calcAngle(this.polygon[i].x, this.polygon[i].y, this.polygon[j].x, this.polygon[j].y);
         var nextLastAngle = this.calcAngle(this.polygon[j].x, this.polygon[j].y, this.polygon[k].x, this.polygon[k].y);
         var theta = Math.abs(Math.atan2(Math.sin(thisNextAngle - nextLastAngle), Math.cos(thisNextAngle - nextLastAngle)));
         if (theta < this.angle) {
-            this.cullIndex.push(j)
+            this.cullIndex.push(j);
             if (k < this.vertexCount) {
                 return this.checkCullCriteria(i, j + 1, k + 1);
             }
@@ -66,16 +62,14 @@ export class CulledPolygon {
 
 
         for(let i=0; i < points.length ; i++){
-            ctx.fillStyle = '#0f0';
+            ctx.fillStyle = '#00f';
             ctx.beginPath();
             ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 2, 0, 2*Math.PI);
             ctx.fill();
             ctx.closePath();
-            ctx.fillStyle = '#000';
-            ctx.font = "10px Arial";
-            ctx.fillText(i, points[i].x + xoffset + 2, points[i].y + yoffset);
         }
 
+        ctx.fillStyle = '#000';
         for(let i=0; i < culledPoints.length ; i++){
             ctx.beginPath();
             ctx.arc(culledPoints[i].x + xoffset, culledPoints[i].y + yoffset, 2, 0, 2*Math.PI);

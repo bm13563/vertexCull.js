@@ -6,7 +6,7 @@ var ctx1 = canvas1.getContext('2d');
 var canvas2=document.getElementById("canvas2")
 var ctx2 = canvas2.getContext('2d');
 
-var polygon = new rp.RandomPolygon(25, 250, 250, 6);
+var polygon = new rp.RandomPolygon(45, 250, 250, 6);
 polygon.draw(ctx1);
-var culledPolygon = new vc.CulledPolygon(polygon.polygon, 8);
+var culledPolygon = new vc.CulledPolygon(polygon.polygon, 10);
 culledPolygon.draw(ctx2);
