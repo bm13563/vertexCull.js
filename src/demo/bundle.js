@@ -70,6 +70,7 @@ var CulledPolygon = function CulledPolygon(polygon, angle) {
 };
 
 var draw = function draw(ctx, points) {
+  var drawVertices = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
   var xmax = Math.max.apply(Math, points.map(function (o) {
     return o.x;
   }));
@@ -85,7 +86,8 @@ var draw = function draw(ctx, points) {
   var xoffset = (ctx.canvas.clientWidth - (xmax - xmin)) / 2 - xmin;
   var yoffset = (ctx.canvas.clientHeight - (ymax - ymin)) / 2 - ymin;
   ctx.lineWidth = 1;
-  ctx.fillStyle = '#f00';
+  ctx.fillStyle = '#989898';
+  ctx.strokeStyle = '#00f';
   ctx.beginPath();
   ctx.moveTo(points[0].x + xoffset, points[0].y + yoffset);
 
@@ -95,16 +97,20 @@ var draw = function draw(ctx, points) {
 
   ctx.closePath();
   ctx.fill();
-  ctx.fillStyle = '#000';
+  ctx.stroke();
 
-  for (var i = 0; i < points.length; i++) {
-    ctx.beginPath();
-    ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 2, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.closePath();
+  if (drawVertices) {
+    ctx.fillStyle = '#0f0';
+
+    for (var i = 0; i < points.length; i++) {
+      ctx.beginPath();
+      ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 3, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.closePath();
+    }
   }
 };
-var drawCulled = function drawCulled(ctx, culledPolygon, culledPoints, polygon) {
+var drawCulled = function drawCulled(ctx, culledPolygon, culledPoints, drawVertices, drawCulledVertices) {
   var points = culledPolygon;
   var xmax = Math.max.apply(Math, points.map(function (o) {
     return o.x;
@@ -121,7 +127,8 @@ var drawCulled = function drawCulled(ctx, culledPolygon, culledPoints, polygon) 
   var xoffset = (ctx.canvas.clientWidth - (xmax - xmin)) / 2 - xmin;
   var yoffset = (ctx.canvas.clientHeight - (ymax - ymin)) / 2 - ymin;
   ctx.lineWidth = 1;
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = '#989898';
+  ctx.strokeStyle = '#00f';
   ctx.beginPath();
   ctx.moveTo(points[0].x + xoffset, points[0].y + yoffset);
 
@@ -131,21 +138,27 @@ var drawCulled = function drawCulled(ctx, culledPolygon, culledPoints, polygon) 
 
   ctx.closePath();
   ctx.fill();
-  ctx.fillStyle = '#0f0';
+  ctx.stroke();
 
-  for (var i = 0; i < points.length; i++) {
-    ctx.beginPath();
-    ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 3, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.closePath();
+  if (drawVertices) {
+    ctx.fillStyle = '#0f0';
+
+    for (var i = 0; i < points.length; i++) {
+      ctx.beginPath();
+      ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 3, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.closePath();
+    }
   }
 
-  for (var _i = 0; _i < culledPoints.length; _i++) {
-    ctx.fillStyle = '#f00';
-    ctx.beginPath();
-    ctx.arc(culledPoints[_i].x + xoffset, culledPoints[_i].y + yoffset, 3, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.closePath();
+  if (drawCulledVertices) {
+    for (var _i = 0; _i < culledPoints.length; _i++) {
+      ctx.fillStyle = '#f00';
+      ctx.beginPath();
+      ctx.arc(culledPoints[_i].x + xoffset, culledPoints[_i].y + yoffset, 3, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.closePath();
+    }
   }
 };
 
@@ -156,5 +169,34 @@ var ctx2 = canvas2.getContext('2d');
 var polygon = new rp.RandomPolygon(50, 250, 250, 8);
 draw(ctx1, polygon.polygon);
 var culledPolygon = new CulledPolygon(polygon.polygon, 15);
-var culledPolygon = new CulledPolygon(polygon.polygon, 15);
-drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, culledPolygon.polygon);
+drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, true, true);
+var drawVertices = {
+  drawVertices: true,
+  drawCulledVertices: true
+};
+document.getElementById("unculled-vertices").addEventListener('change', function (event) {
+  if (event.target.checked) {
+    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    draw(ctx1, polygon.polygon, true);
+    drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, true, drawVertices.drawCulledVertices);
+    drawVertices.drawVertices = true;
+  } else {
+    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    draw(ctx1, polygon.polygon, false);
+    drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, false, drawVertices.drawCulledVertices);
+    drawVertices.drawVertices = false;
+  }
+});
+document.getElementById("culled-vertices").addEventListener('change', function (event) {
+  if (event.target.checked) {
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, drawVertices.drawVertices, true);
+    drawVertices.drawCulledVertices = true;
+  } else {
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, drawVertices.drawVertices, false);
+    drawVertices.drawCulledVertices = false;
+  }
+});
