@@ -7,21 +7,37 @@
     </head>
 
     <body>
-        <div id="canvas-container">
-            <canvas id="canvas1" width="300" height="300"></canvas>
-            <canvas id="canvas2" width="300" height="300"></canvas>
+        <div class="parent-container">
+            <div class="canvas-container" id="canvas-container-1">
+                <canvas id="canvas1" width="300" height="300"></canvas>
+                <p id="vertex-count" class="canvas-text"></p>
+            </div>
+            <div class="canvas-container" id="canvas-container-2">
+                <canvas id="canvas2" width="300" height="300"></canvas>
+                <p id="culled-vertex-count" class="canvas-text"></p>
+            </div>
         </div>
 
-        <div id="checkboxes">
-            <label class="container">Unculled vertices
-                <input id="unculled-vertices" type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">Culled Vertices
-                <input id="culled-vertices" type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label>
-        </div>
+        <div class="interactive-container">
+            <div id="checkboxes">
+                <label class="container">Unculled vertices
+                    <input id="unculled-vertices" type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Culled vertices
+                    <input id="culled-vertices" type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="slidecontainer">
+                <p class="text"><strong>Theta:</strong> <span id="theta-value"></span></p>
+                <input type="range" min="0" max="45" value="10" class="slider" id="theta-range">
+            </div>
+        </div><br><br>
+
+        <button id="new-polygon">New polygon</button>
+
     </body>
 
     <script src="https://bm13563.github.io/randomPolys.js/build/bundle.js"></script>

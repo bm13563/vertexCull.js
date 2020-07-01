@@ -1,10 +1,30 @@
-#canvas-container {
-    min-width:600px;
-    min-height:300px;
+.parent-container {
+    left:0%;
+    width: 610px;
+    height: 350px;
+    padding: 10px;
 }
+
+#canvas-container-1 {
+    width: 300px;
+    margin-left:5px;
+    float: left;
+}
+
+#canvas-container-2 {
+    width:300px;
+    margin-left:305px;
+}
+
+.canvas-text {
+    margin:0px;
+}
+
 
 #checkboxes {
     padding-left:20px;
+    width:200px;
+    float:left;
 }
 
 .container {
@@ -65,4 +85,55 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+
+  .text {
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-bottom: 10px;
+  }
+
+  .slidecontainer {
+    width: 350px;;
+    margin-left: 250px;
+    margin-right:0px;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 350px;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+  #new-polygon {
+      margin-left: 20px;
   }
