@@ -85,8 +85,8 @@ var draw = function draw(ctx, points) {
   }));
   var xoffset = (ctx.canvas.clientWidth - (xmax - xmin)) / 2 - xmin;
   var yoffset = (ctx.canvas.clientHeight - (ymax - ymin)) / 2 - ymin;
-  ctx.lineWidth = 1;
-  ctx.fillStyle = '#989898';
+  ctx.lineWidth = 2;
+  ctx.fillStyle = '#cccccc';
   ctx.strokeStyle = '#00f';
   ctx.beginPath();
   ctx.moveTo(points[0].x + xoffset, points[0].y + yoffset);
@@ -100,7 +100,7 @@ var draw = function draw(ctx, points) {
   ctx.stroke();
 
   if (drawVertices) {
-    ctx.fillStyle = '#0f0';
+    ctx.fillStyle = '#000';
 
     for (var i = 0; i < points.length; i++) {
       ctx.beginPath();
@@ -126,8 +126,8 @@ var drawCulled = function drawCulled(ctx, culledPolygon, culledPoints, drawVerti
   }));
   var xoffset = (ctx.canvas.clientWidth - (xmax - xmin)) / 2 - xmin;
   var yoffset = (ctx.canvas.clientHeight - (ymax - ymin)) / 2 - ymin;
-  ctx.lineWidth = 1;
-  ctx.fillStyle = '#989898';
+  ctx.lineWidth = 2;
+  ctx.fillStyle = '#cccccc';
   ctx.strokeStyle = '#00f';
   ctx.beginPath();
   ctx.moveTo(points[0].x + xoffset, points[0].y + yoffset);
@@ -141,7 +141,7 @@ var drawCulled = function drawCulled(ctx, culledPolygon, culledPoints, drawVerti
   ctx.stroke();
 
   if (drawVertices) {
-    ctx.fillStyle = '#0f0';
+    ctx.fillStyle = '#000';
 
     for (var i = 0; i < points.length; i++) {
       ctx.beginPath();
@@ -174,7 +174,8 @@ var ctx2 = canvas2.getContext('2d');
 var theta = document.getElementById("theta-range").value;
 document.getElementById("theta-value").innerHTML = theta;
 var vertexCount = getRandomInt(40, 60);
-var polygon = new rp.RandomPolygon(vertexCount, 250, 250, 6);
+var epsilon = getRandomInt(2, 8);
+var polygon = new rp.RandomPolygon(vertexCount, 250, 250, epsilon);
 draw(ctx1, polygon.polygon);
 var culledPolygon = new CulledPolygon(polygon.polygon, 15);
 drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, true, true);
@@ -225,7 +226,8 @@ document.getElementById("new-polygon").onclick = function (e) {
   ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
   ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
   vertexCount = getRandomInt(40, 60);
-  polygon = new rp.RandomPolygon(vertexCount, 250, 250, 6);
+  epsilon = getRandomInt(2, 8);
+  polygon = new rp.RandomPolygon(vertexCount, 250, 250, epsilon);
   draw(ctx1, polygon.polygon, drawVertices.drawVertices);
   culledPolygon = new CulledPolygon(polygon.polygon, theta);
   drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, drawVertices.drawVertices, drawVertices.drawCulledVertices);

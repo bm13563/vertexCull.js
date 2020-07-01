@@ -1,4 +1,4 @@
-(function () {
+var cv = (function (exports) {
   'use strict';
 
   function _classCallCheck(instance, Constructor) {
@@ -70,7 +70,8 @@
     this.cullVertices();
   };
 
-  var polygon = new rp.RandomPolygon(50, 250, 250, 5);
-  var culledPolygon = new CulledPolygon(polygon.polygon, 15);
+  exports.CulledPolygon = CulledPolygon;
 
-}());
+  return exports;
+
+}({}));

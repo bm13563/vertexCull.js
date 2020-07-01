@@ -11,7 +11,8 @@ var theta = document.getElementById("theta-range").value;
 document.getElementById("theta-value").innerHTML = theta;
 
 var vertexCount = util.getRandomInt(40, 60);
-var polygon = new rp.RandomPolygon(vertexCount, 250, 250, 6);
+var epsilon = util.getRandomInt(2, 8);
+var polygon = new rp.RandomPolygon(vertexCount, 250, 250, epsilon);
 util.draw(ctx1, polygon.polygon);
 var culledPolygon = new vc.CulledPolygon(polygon.polygon, 15);
 util.drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, true, true)
@@ -64,7 +65,8 @@ document.getElementById("new-polygon").onclick = function(e){
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
 
     vertexCount = util.getRandomInt(40, 60);
-    polygon = new rp.RandomPolygon(vertexCount, 250, 250, 6);
+    epsilon = util.getRandomInt(2, 8);
+    polygon = new rp.RandomPolygon(vertexCount, 250, 250, epsilon);
     util.draw(ctx1, polygon.polygon, drawVertices.drawVertices);
     culledPolygon = new vc.CulledPolygon(polygon.polygon, theta);
     util.drawCulled(ctx2, culledPolygon.culledPolygon, culledPolygon.culledPoint, drawVertices.drawVertices, drawVertices.drawCulledVertices)

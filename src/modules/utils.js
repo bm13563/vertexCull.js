@@ -6,8 +6,8 @@ export const draw = (ctx, points, drawVertices=true) => {
     const xoffset = (((ctx.canvas.clientWidth) - (xmax - xmin)) / 2) - xmin;
     const yoffset = (((ctx.canvas.clientHeight) - (ymax - ymin)) / 2) - ymin;
     
-    ctx.lineWidth= 1;
-    ctx.fillStyle = '#989898';
+    ctx.lineWidth= 2;
+    ctx.fillStyle = '#cccccc';
     ctx.strokeStyle = '#00f';
     ctx.beginPath();
     ctx.moveTo(points[0].x + xoffset, points[0].y + yoffset);
@@ -19,7 +19,7 @@ export const draw = (ctx, points, drawVertices=true) => {
     ctx.stroke();
 
     if (drawVertices) {
-        ctx.fillStyle = '#0f0';
+        ctx.fillStyle = '#000';
         for(let i=0; i < points.length ; i++){
             ctx.beginPath();
             ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 3, 0, 2*Math.PI);
@@ -38,8 +38,8 @@ export const drawCulled = (ctx, culledPolygon, culledPoints, drawVertices, drawC
     const xoffset = (((ctx.canvas.clientWidth) - (xmax - xmin)) / 2) - xmin;
     const yoffset = (((ctx.canvas.clientHeight) - (ymax - ymin)) / 2) - ymin;
 
-    ctx.lineWidth= 1;
-    ctx.fillStyle = '#989898';
+    ctx.lineWidth= 2;
+    ctx.fillStyle = '#cccccc';
     ctx.strokeStyle = '#00f';
     ctx.beginPath();
     ctx.moveTo(points[0].x + xoffset, points[0].y + yoffset);
@@ -51,7 +51,7 @@ export const drawCulled = (ctx, culledPolygon, culledPoints, drawVertices, drawC
     ctx.stroke();
 
     if (drawVertices) {
-        ctx.fillStyle = '#0f0';
+        ctx.fillStyle = '#000';
         for(let i=0; i < points.length ; i++){
             ctx.beginPath();
             ctx.arc(points[i].x + xoffset, points[i].y + yoffset, 3, 0, 2*Math.PI);
