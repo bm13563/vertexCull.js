@@ -1,7 +1,7 @@
 # vertexCull.js
 A very simple algorithm for culling vertices while minimally changing the shape of a polygon.
 
-A simple algorithm that recursively removes sub-linear vertices within a loop, to improve performance of spatial applications. Effective at preserving the shape of a polygon while substantially decreasing vertex count, particularly  with regularly-shaped polygons (e.g buildings).  Not designed to be a subsitute for the Ramer-Douglas-Peucker algorithm, which is far more effective for large-scale generalisation.
+A simple algorithm that recursively removes sub-linear vertices within a loop, to improve performance of spatial applications. Effective at preserving the shape of a polygon while substantially decreasing vertex count, particularly  with regularly-shaped polygons (e.g buildings).  Muhc less effective than the Ramer-Douglas-Peucker algorithm for large-scale generalisation, but does a good job of maximising shape preservation.
 
 # Source
 
