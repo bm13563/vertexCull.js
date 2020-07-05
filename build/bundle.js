@@ -1,5 +1,8 @@
-var cv = (function (exports) {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = global || self, factory(global.vc = {}));
+}(this, (function (exports) { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -72,6 +75,6 @@ var cv = (function (exports) {
 
   exports.CulledPolygon = CulledPolygon;
 
-  return exports;
+  Object.defineProperty(exports, '__esModule', { value: true });
 
-}({}));
+})));

@@ -5,8 +5,8 @@ export default [{
   input: 'src/modules/vertexCull.js',
   output: {
     file: 'build/bundle.js',
-    format: 'iife',
-    name: "cv"
+    format: 'umd',
+    name: "vc",
   },
   plugins: [
     babel({ babelHelpers: 'bundled' })
@@ -15,7 +15,8 @@ export default [{
     input: 'src/demo/demo.js',
     output: {
       file: 'src/demo/bundle.js',
-      format: 'cjs'
+      format: 'umd',
+      name: "vc",
     },
     plugins: [
       babel({ babelHelpers: 'bundled' })
