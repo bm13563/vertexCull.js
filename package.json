@@ -11,7 +11,15 @@
     "type": "git",
     "url": "git+https://github.com/bm13563/vertexCull.js.git"
   },
-  "author": "",
+  "keywords": [
+    "polygons",
+    "geometry",
+    "generalization",
+    "simplification",
+    "algorithm",
+    "spatial"
+  ],
+  "author": "bm13563",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bm13563/vertexCull.js/issues"
