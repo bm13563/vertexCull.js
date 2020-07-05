@@ -9,14 +9,21 @@
     <body>
         <div class="parent-container">
             <div class="canvas-container" id="canvas-container-1">
+                <h3>Base polygon (randomPolys.js)</h3>
                 <canvas id="canvas1" width="300" height="300"></canvas>
                 <p id="vertex-count" class="canvas-text"></p>
             </div>
             <div class="canvas-container" id="canvas-container-2">
+                <h3>Simplified (vertexCull.js)</h3>
                 <canvas id="canvas2" width="300" height="300"></canvas>
                 <p id="culled-vertex-count" class="canvas-text"></p>
             </div>
-        </div>
+            <div class="canvas-container" id="canvas-container-3">
+                <h3>Simplified (RDP - simplify.js)</h3>
+                <canvas id="canvas3" width="300" height="300"></canvas>
+                <p id="dp-vertex-count" class="canvas-text"></p>
+            </div>
+        </div><br><br>
 
         <div class="interactive-container">
             <div id="checkboxes">
@@ -28,18 +35,20 @@
                     <input id="culled-vertices" type="checkbox" checked="checked">
                     <span class="checkmark"></span>
                 </label>
+                <button id="new-polygon">New polygon</button>
             </div>
 
             <div class="slidecontainer">
-                <p class="text"><strong>Theta:</strong> <span id="theta-value"></span></p>
-                <input type="range" min="0" max="45" value="10" class="slider" id="theta-range">
+                <p class="text"><strong>Theta (vertexCull.js):</strong> <span id="theta-value"></span></p>
+                <input type="range" min="0" max="90" value="10" class="slider" id="theta-range">
+                <p class="text"><strong>Tolerance (simplify.js):</strong> <span id="tolerance-value"></span></p>
+                <input type="range" min="0" max="15" value="1" class="slider" id="tolerance-range">
             </div>
         </div><br><br>
-
-        <button id="new-polygon">New polygon</button>
 
     </body>
 
     <script src="https://bm13563.github.io/randomPolys.js/build/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplify-js@1.2.4/simplify.min.js"></script>
     <script src="./src/demo/bundle.js"></script>
 </html>

@@ -1,19 +1,25 @@
 .parent-container {
     left:0%;
-    width: 610px;
+    width: 910px;
     height: 350px;
     padding: 10px;
 }
 
 #canvas-container-1 {
     width: 300px;
-    margin-left:5px;
     float: left;
+    padding-left:5px;
 }
 
 #canvas-container-2 {
     width:300px;
-    margin-left:305px;
+    float: left;
+}
+
+#canvas-container-3 {
+    width:300px;
+    float: left;
+    padding-right:5px;
 }
 
 .canvas-text {
@@ -88,7 +94,7 @@
   }
 
   .text {
-    font-size: 22px;
+    font-size: 14px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -106,7 +112,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 350px;
-    height: 25px;
+    height: 12px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
@@ -122,7 +128,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
-    height: 25px;
+    height: 12px;
     background: #4CAF50;
     cursor: pointer;
   }
@@ -135,5 +141,5 @@
   }
 
   #new-polygon {
-      margin-left: 20px;
+      margin-top: 5px;
   }
