@@ -27,7 +27,7 @@ var vc = require('vertexcull/build/bundle');
 var culledPolygon = new vc.CulledPolygon(polygon, theta);
 console.log(culledPolygon.culledPolygon);
 ```
-Where **polygon** is an array in the form ```[{x:100, y:200}, {x:300, y:400}, ...] ``` and **theta** is a tolerance for point culling. Designed to be used at theta values of ```<= 5```. Will work for theta values ```> 5```, but the user may want to consider whether the Ramer-Douglas-Peucker algorithm is more appropriate in such cases.
+Where **polygon** is an array in the form ```[{x:100, y:200}, {x:300, y:400}, ...] ``` and **theta** is a tolerance for point discarding. Designed to be used at theta values of ```<= 5```. Will work for theta values ```> 5```, but the user may want to consider whether the Ramer-Douglas-Peucker algorithm is more appropriate in such cases.
 
 # Demo
 https://bm13563.github.io/vertexCull.js/
